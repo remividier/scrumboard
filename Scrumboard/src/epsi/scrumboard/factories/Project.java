@@ -8,6 +8,9 @@ public class Project {
     //Stocke le nom du projet
     String nomProject;
 
+    //Stocke le DoD
+    String dod;
+
     // creation de projet
     private void create(String[] args){
 
