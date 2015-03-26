@@ -5,6 +5,9 @@ package epsi.scrumboard.factories;
  */
 public class Sprint {
 
+    //Stocke le nom du sprint
+    String nomSprint;
+
     // creation de sprint
     static void create(String[] args){}
 

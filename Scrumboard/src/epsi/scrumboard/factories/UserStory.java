@@ -5,6 +5,9 @@ package epsi.scrumboard.factories;
  */
 public class UserStory {
 
+    //Stocke le nom de UserStory
+    String nomUserStory;
+
     // creation de UserStory
     static void create(String[] args){}
 
