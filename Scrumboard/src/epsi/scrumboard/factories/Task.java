@@ -3,7 +3,7 @@ package epsi.scrumboard.factories;
 /**
  * Created by eklektik on 26/03/2015.
  */
-public class Tache {
+public class Task {
     //Stocke le nom de la tache
     String nomTache;
 

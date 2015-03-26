@@ -3,21 +3,21 @@ package epsi.scrumboard.factories;
 /**
  * Created by eklektik on 26/03/2015.
  */
-public class Projet {
+public class Project {
 
     //Stocke le nom du projet
-    String nomProjet;
+    String nomProject;
 
     // creation de projet
-    static void create(String[] args){
+    private void create(String[] args){
 
     }
 
     // mise a jour de projet
-    static void update(String[] args){}
+    private void update(String[] args){}
 
     // suppression de projet
-    static void delete(String[] args){}
+    private void delete(String[] args){}
 
 
 }
