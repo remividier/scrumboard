@@ -27,14 +27,8 @@
   </build>
   
   <dependencies>
-  
-  
-  
-  <dependency>
-	<groupId>redis.clients</groupId>
-	<artifactId>jedis</artifactId>
-	<version>2.6.2</version>
-</dependency>
+
+
 
 <dependency>
 	<groupId>javax.servlet</groupId>
@@ -72,6 +66,11 @@
       <artifactId>mongo-java-driver</artifactId>
       <version>2.13.0</version>
     </dependency>
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20090211</version>
+      </dependency>
 
 
   </dependencies>

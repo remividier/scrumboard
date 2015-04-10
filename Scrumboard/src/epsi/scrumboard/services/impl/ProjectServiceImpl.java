@@ -19,7 +19,9 @@ public class ProjectServiceImpl implements ProjectService {
         projectForDB.put("name",project.getName());
         projectForDB.put("dod", project.getDod());
 
-        Connection.insert(projectForDB,"projects")
+        Connection.insert(projectForDB,"projects");
+
+
 
     }
 }
