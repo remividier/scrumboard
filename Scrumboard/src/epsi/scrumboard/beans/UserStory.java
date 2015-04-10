@@ -7,7 +7,7 @@ public class UserStory {
 
     private String name;
     private int technicalEffort;
-    private int workValue;
+    private int businessValue;
     
     public String getName() {
         return name;
@@ -25,12 +25,12 @@ public class UserStory {
         this.technicalEffort = technicalEffort;
     }
     
-    public int getWorkValue() {
-        return workValue;
+    public int getBusinessValue() {
+        return businessValue;
     }
 
-    public void setWorkValue(int workValue) {
-        this.workValue = workValue;
+    public void setBusinessValue(int businessValue) {
+        this.businessValue = businessValue;
     }
 
 }

@@ -16,8 +16,8 @@ public class UserStoryServiceImpl implements UserStoryService {
 
         DBObject projectForDB = new BasicDBObject();
         projectForDB.put("name",us.getName());
-        projectForDB.put("technicalEffort", project.getTechnicalEffort());
-        projectForDB.put("workValue", project.getWorkValue());
+        projectForDB.put("te", project.getTechnicalEffort());
+        projectForDB.put("bv", project.getWorkValue());
 
         Connection.insert(projectForDB,"userStory");
 

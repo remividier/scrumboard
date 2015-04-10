@@ -26,10 +26,10 @@ public class UserStoryController {
 
 
         UserStory us = new UserStory();
-        us.setName("Test nom US");
-        us.setTechnicalEffort(50);
-        us.setWorkValue(70);
-        userStoryService.addProject(us);
+        us.setName(request.getParameter('name'));
+        us.setTechnicalEffort(request.getParameter('technicalEffort'));
+        us.setBusinessValue(request.getParameter('bv'));
+        userStoryService.addUserStory(us);
 
     }
 
