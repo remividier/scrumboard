@@ -63,6 +63,25 @@ $('#projet-add').on('click', function () {
 
 });
 
+// AJOUT D'UNE US
+$('#us-add').on('click', function () {
+
+    $.ajax({
+        method: "POST",
+        url: "rest/addProject",
+        data: {name: document.getElementById('us-name').value, te: document.getElementById('us-te').value, bv: document.getElementById('us-bv').value}
+    }).done(function () {
+        alert("success");
+        // Clear form
+        document.getElementById('us-name').value = "";
+        document.getElementById('us-te').value = "";
+        document.getElementById('us-bv').value = "";
+    }).fail(function () {
+        alert("error");
+    });
+
+});
+
 
 // MAIN
 $(function () {
