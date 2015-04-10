@@ -53,12 +53,12 @@ $('#projet-add').on('click', function () {
         url: "rest/addProject",
         data: {name: document.getElementById('projet-name').value, dod: document.getElementById('projet-dod').value}
     }).done(function () {
-        alert("success");
+        console.log("[SUCCESS] Ajout d'un projet.");
         // Clear form
         document.getElementById('projet-name').value = "";
         document.getElementById('projet-dod').value = "";
     }).fail(function () {
-        alert("error");
+        console.log("[ERROR] Ajout d'un projet.");
     });
 
 });
@@ -68,16 +68,16 @@ $('#us-add').on('click', function () {
 
     $.ajax({
         method: "POST",
-        url: "rest/addProject",
+        url: "rest/addUserStory",
         data: {name: document.getElementById('us-name').value, te: document.getElementById('us-te').value, bv: document.getElementById('us-bv').value}
     }).done(function () {
-        alert("success");
+        console.log("[SUCCESS] Ajout d'une user-story.");
         // Clear form
         document.getElementById('us-name').value = "";
         document.getElementById('us-te').value = "";
         document.getElementById('us-bv').value = "";
     }).fail(function () {
-        alert("error");
+        console.log("[SUCCESS] Ajout d'une user-story.");
     });
 
 });
