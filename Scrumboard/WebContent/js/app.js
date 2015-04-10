@@ -39,7 +39,6 @@ $('a.list-group-item').on('click', function () {
 $('#projet-list .item').on('click', function () {
 
     // TODO Charger les données du projet en question
-
     afficherActions();
     afficherScrumzone();
 });
@@ -69,7 +68,11 @@ $('#us-add').on('click', function () {
     $.ajax({
         method: "POST",
         url: "rest/addUserStory",
-        data: {name: document.getElementById('us-name').value, te: document.getElementById('us-te').value, bv: document.getElementById('us-bv').value}
+        data: {
+            name: document.getElementById('us-name').value,
+            te: document.getElementById('us-te').value,
+            bv: document.getElementById('us-bv').value
+        }
     }).done(function () {
         console.log("[SUCCESS] Ajout d'une user-story.");
         // Clear form
@@ -88,4 +91,19 @@ $(function () {
     placerScrumzone();
     $('.menu a[data-menu=projets]').click();
     console.log("ready!");
+
+    var toto = $.ajax({
+        method: "GET",
+        url: "rest/getProjects"
+    }).done(function (data) {
+        console.log("[SUCCESS] Récupération des projets.");
+        if (console && console.log) {
+            console.log("Sample of data:", data.slice(0, 100));
+        }
+
+    }).fail(function () {
+        console.log("[ERROR] Récupération des projets.");
+    });
+
+
 });

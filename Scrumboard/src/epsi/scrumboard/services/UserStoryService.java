@@ -7,6 +7,6 @@ import epsi.scrumboard.beans.UserStory;
  */
 public interface UserStoryService {
 	
-	void addUserStory (UserStory us);
+	void addUserStory (UserStory us, String idProject);
 
 }
