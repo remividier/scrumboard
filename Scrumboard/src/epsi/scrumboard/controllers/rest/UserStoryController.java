@@ -23,14 +23,15 @@ public class UserStoryController {
     @Resource
     UserStoryService userStoryService;
 
-    @RequestMapping(value = "/addUserStory", method = RequestMethod.POST)
+    @RequestMapping(value = "/userStory", method = RequestMethod.POST)
     public void addUserStory(HttpServletRequest request, HttpServletResponse response) {
 
 
         UserStory us = new UserStory();
         us.setName(request.getParameter("name").toString());
 
-        String test = "5527e16926ff65a479687bc0";
+        // ATTENTION A L'ID EN BASE
+        String test = "55282ef5bc0423e748a9836f";
         us.setTechnicalEffort(Integer.parseInt(request.getParameter("te")));
         us.setBusinessValue(Integer.parseInt(request.getParameter("bv")));
 

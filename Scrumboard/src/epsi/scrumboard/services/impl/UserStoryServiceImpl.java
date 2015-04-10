@@ -15,23 +15,22 @@ import java.util.List;
  */
 public class UserStoryServiceImpl implements UserStoryService {
 
-	@Override
+    @Override
     public void addUserStory(UserStory us, String idProject) {
 
         List<DBObject> projectForDB = Connection.find("projects",new BasicDBObject("_id",new ObjectId(idProject)), new BasicDBObject());
 
-
         DBObject project = projectForDB.get(0);
 
-
-        DBObject userStories = (DBObject) project.get("userStories");
-        if(userStories == null) {
-            project.put("userStories", new BasicDBObject());
+        if( project.get("userStories") == null) {
+            project.put("userStories", new BasicDBList());
         }
-        userStories = (DBObject) project.get("userStories");
-       userStories.put("name",us.getName());
-        userStories.put("te", us.getTechnicalEffort());
-        userStories.put("bv", us.getBusinessValue());
+        BasicDBList userStories = (BasicDBList) project.get("userStories");
+        BasicDBObject userStory = new BasicDBObject("name",us.getName())
+                .append("te",us.getTechnicalEffort())
+                .append("bv",us.getBusinessValue());
+
+        userStories.add(userStory);
 
         project.put("userStories",userStories);
         Connection.save("projects",project);

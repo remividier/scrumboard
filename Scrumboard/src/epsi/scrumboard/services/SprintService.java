@@ -9,7 +9,8 @@ import java.util.List;
  */
 public interface SprintService {
 
-    void addSprint(Sprint sprint);
+    void addSprint(String idProject, Sprint sprint);
+
 
     List<Sprint> getSprints();
 }

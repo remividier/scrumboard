@@ -11,9 +11,8 @@ public interface ProjectService {
 
 
     void addProject (Project project);
-
-
-    List<Project> getProjects ();
+    List<Project> getProjects();
+    Project getProject (String idProject);
 
 
 }

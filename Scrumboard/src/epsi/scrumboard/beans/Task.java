@@ -5,16 +5,14 @@ package epsi.scrumboard.beans;
  */
 public class Task {
     //Stocke le nom de la tache
+
     String nomTache;
 
-    // creation de la tache
-    static void create(String[] args){
-
+    public String getNomTache() {
+        return nomTache;
     }
 
-    // mise a jour de la tache
-    static void update(String[] args){}
-
-    // suppression de la tache
-    static void delete(String[] args){}
+    public void setNomTache(String nomTache) {
+        this.nomTache = nomTache;
+    }
 }

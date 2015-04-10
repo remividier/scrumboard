@@ -4,6 +4,7 @@ import epsi.scrumboard.beans.Project;
 import epsi.scrumboard.services.ProjectService;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,7 @@ public class ProjectController {
     @Resource
     ProjectService projectService;
 
-    @RequestMapping(value="/addProject", method= RequestMethod.POST)
+    @RequestMapping(value="/project", method= RequestMethod.POST)
     public void addProject(HttpServletRequest request, HttpServletResponse response) {
 
         String name = request.getParameter("name");
@@ -32,16 +33,24 @@ public class ProjectController {
         project.setName(name);
         project.setDod(dod);
         projectService.addProject(project);
-
     }
 
-    @RequestMapping(value="/getProjects", method=RequestMethod.GET)
+    @RequestMapping(value="/projects", method=RequestMethod.GET)
     public @ResponseBody
     List<Project> getProjects (HttpServletRequest request, HttpServletResponse response) {
 
         List<Project> result = projectService.getProjects();
         return result;
     }
+
+    @RequestMapping(value="/project/{id}",method=RequestMethod.GET)
+    public @ResponseBody Project getProject (@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
+
+        Project result = projectService.getProject(id);
+        return result;
+
+    }
+
 
 
 

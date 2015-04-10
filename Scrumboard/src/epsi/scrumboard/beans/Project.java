@@ -11,6 +11,7 @@ public class Project {
     private  String name;
     private   String dod;
     private ArrayList<UserStory> userStories = new ArrayList<UserStory>();
+    private ArrayList<Sprint> sprints = new ArrayList<Sprint>();
 
 
     public String getId() {
@@ -43,5 +44,13 @@ public class Project {
 
     public void setUserStories(ArrayList<UserStory> userStories) {
         this.userStories = userStories;
+    }
+
+    public ArrayList<Sprint> getSprints() {
+        return sprints;
+    }
+
+    public void setSprints(ArrayList<Sprint> sprints) {
+        this.sprints = sprints;
     }
 }

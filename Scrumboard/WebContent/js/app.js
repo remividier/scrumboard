@@ -49,7 +49,7 @@ $('#projet-add').on('click', function () {
 
     $.ajax({
         method: "POST",
-        url: "rest/addProject",
+        url: "rest/project",
         data: {name: document.getElementById('projet-name').value, dod: document.getElementById('projet-dod').value}
     }).done(function () {
         console.log("[SUCCESS] Ajout d'un projet.");
@@ -67,7 +67,7 @@ $('#us-add').on('click', function () {
 
     $.ajax({
         method: "POST",
-        url: "rest/addUserStory",
+        url: "rest/userStory",
         data: {
             name: document.getElementById('us-name').value,
             te: document.getElementById('us-te').value,
@@ -85,6 +85,26 @@ $('#us-add').on('click', function () {
 
 });
 
+// AJOUT D'UN SPRINT
+$('#sprint-add').on('click', function () {
+
+    $.ajax({
+        method: "POST",
+        url: "rest/sprint",
+        data: {
+            name: document.getElementById('sprint-name').value,
+        }
+    }).done(function () {
+        console.log("[SUCCESS] Ajout d'un sprint.");
+        // Clear form
+        document.getElementById('sprint-name').value = "";
+
+    }).fail(function () {
+        console.log("[SUCCESS] Ajout d'une user-story.");
+    });
+
+});
+
 
 // MAIN
 $(function () {
@@ -94,7 +114,7 @@ $(function () {
 
     var toto = $.ajax({
         method: "GET",
-        url: "rest/getProjects"
+        url: "rest/projects"
     }).done(function (data) {
         console.log("[SUCCESS] Récupération des projets.");
         if (console && console.log) {

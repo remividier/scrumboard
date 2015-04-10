@@ -12,7 +12,8 @@
 
     <bean id="projectService" name="poductService" class="epsi.scrumboard.services.impl.ProjectServiceImpl"/>
     <bean id="userStoryService" name="userStoryService" class="epsi.scrumboard.services.impl.UserStoryServiceImpl"/>
-
+    <bean id="sprintService" name="sprintService" class="epsi.scrumboard.services.impl.SprintServiceImpl"/>
+    <bean id="taskService" name="taskService" class="epsi.scrumboard.services.impl.TaskServiceImpl"/>
 
 
 </beans>
