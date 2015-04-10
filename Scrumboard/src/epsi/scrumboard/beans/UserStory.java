@@ -5,16 +5,32 @@ package epsi.scrumboard.beans;
  */
 public class UserStory {
 
-    //Stocke le nom de UserStory
-    String nomUserStory;
+    private String name;
+    private int effortTechnique;
+    private int valeurMetier;
+    
+    public String getName() {
+        return name;
+    }
 
-    // creation de UserStory
-    static void create(String[] args){}
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public int getEffortTechnique() {
+        return effortTechnique;
+    }
 
-    // mise a jour de UserStory
-    static void update(String[] args){}
+    public void setEffortTechnique(int effortTechnique) {
+        this.effortTechnique = effortTechnique;
+    }
+    
+    public int getValeurMetier() {
+        return valeurMetier;
+    }
 
-    // suppression de UserStory
-    static void delete(String[] args){}
+    public void setValeurMetier(int valeurMetier) {
+        this.valeurMetier = valeurMetier;
+    }
 
 }
