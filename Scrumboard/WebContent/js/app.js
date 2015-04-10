@@ -38,6 +38,15 @@ $('a.list-group-item').on('click', function () {
 
 $('#projet-list .item').on('click', function () {
 
+    // TODO Charger les données du projet en question
+
+    afficherActions();
+    afficherScrumzone();
+});
+
+
+$('#projet-add').on('click', function () {
+
     $.ajax({
         method: "POST",
         url: "rest/addProject",
@@ -52,10 +61,6 @@ $('#projet-list .item').on('click', function () {
             alert("error");
         });
 
-    // TODO Charger les données du projet en question
-
-    afficherActions();
-    afficherScrumzone();
 });
 
 
