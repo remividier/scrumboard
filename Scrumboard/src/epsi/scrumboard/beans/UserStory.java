@@ -6,8 +6,8 @@ package epsi.scrumboard.beans;
 public class UserStory {
 
     private String name;
-    private int effortTechnique;
-    private int valeurMetier;
+    private int technicalEffort;
+    private int workValue;
     
     public String getName() {
         return name;
@@ -17,20 +17,20 @@ public class UserStory {
         this.name = name;
     }
     
-    public int getEffortTechnique() {
+    public int getTechnicalEffort() {
         return effortTechnique;
     }
 
-    public void setEffortTechnique(int effortTechnique) {
-        this.effortTechnique = effortTechnique;
+    public void setTechnicalEffort(int technicalEffort) {
+        this.technicalEffort = technicalEffort;
     }
     
-    public int getValeurMetier() {
-        return valeurMetier;
+    public int getWorkValue() {
+        return workValue;
     }
 
-    public void setValeurMetier(int valeurMetier) {
-        this.valeurMetier = valeurMetier;
+    public void setWorkValue(int workValue) {
+        this.workValue = workValue;
     }
 
 }

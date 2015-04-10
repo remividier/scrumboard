@@ -1,5 +1,9 @@
 package epsi.scrumboard.services.impl;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import epsi.scrumboard.beans.UserStory;
+import epsi.scrumboard.mongo.Connection;
 import epsi.scrumboard.services.UserStoryService;
 
 /**
@@ -7,5 +11,17 @@ import epsi.scrumboard.services.UserStoryService;
  */
 public class UserStoryServiceImpl implements UserStoryService {
 
+	@Override
+    public void addUserStory(UserStory us) {
 
+        DBObject projectForDB = new BasicDBObject();
+        projectForDB.put("name",us.getName());
+        projectForDB.put("technicalEffort", project.getTechnicalEffort());
+        projectForDB.put("workValue", project.getWorkValue());
+
+        Connection.insert(projectForDB,"userStory");
+
+
+
+    }
 }
