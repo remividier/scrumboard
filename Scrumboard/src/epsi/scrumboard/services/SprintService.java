@@ -1,6 +1,8 @@
 package epsi.scrumboard.services;
 
 import epsi.scrumboard.beans.Sprint;
+import epsi.scrumboard.beans.Task;
+
 import java.util.ArrayList;
 
 /**
