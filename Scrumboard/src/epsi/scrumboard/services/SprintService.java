@@ -11,13 +11,5 @@ import java.util.ArrayList;
 public interface SprintService {
 
 
-    public String getName();
-
-    public void setName(String name);
-
-    public ArrayList<Task> getTasks();
-
-    public void setTasks(ArrayList<Task> tasks);
-
 
 }
