@@ -26,9 +26,7 @@ public class SprintServiceImpl implements SprintService {
         } else {
             sprinttForDB.put("name",sprint.getName());
         }
-        sprinttForDB.put("name",sprint.getName());
-        sprinttForDB.put("dod", sprint.getDod());
-
+// To FINISH
         Connection.insert(sprinttForDB, "sprints");
 
     }
