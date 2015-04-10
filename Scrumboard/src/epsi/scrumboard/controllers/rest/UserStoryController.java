@@ -28,10 +28,16 @@ public class UserStoryController {
 
 
         UserStory us = new UserStory();
-        us.setName(request.getParameter("name"));
+        us.setName(request.getParameter("name").toString());
+
+        String test = "5527e16926ff65a479687bc0";
         us.setTechnicalEffort(Integer.parseInt(request.getParameter("te")));
         us.setBusinessValue(Integer.parseInt(request.getParameter("bv")));
-        userStoryService.addUserStory(us);
+
+
+
+
+        userStoryService.addUserStory(us, test);
 
     }
 
