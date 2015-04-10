@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+    <link href="css/app.css" rel="stylesheet">
+
+    <title>ScrumBoard</title>
+
+</head>
+<body>
+
+<!-- MENU DE GAUCHE -->
+<div class="list-group menu menu-gauche">
+    <a href="#" class="list-group-item" data-menu="sprints">
+        <i class="md-tab md-3x"></i>
+        <h4 class="list-group-item-heading">Sprints</h4>
+    </a>
+    <a href="#" class="list-group-item" data-menu="usersstories">
+        <i class="md-add md-3x"></i>
+        <h4 class="list-group-item-heading">Users-Stories</h4>
+    </a>
+    <a href="#" class="list-group-item" data-menu="taches">
+        <i class="md-add md-3x"></i>
+        <h4 class="list-group-item-heading">Tâches</h4>
+    </a>
+    <a href="#" class="list-group-item" data-menu="indicateurs">
+        <i class="md-info-outline md-3x"></i>
+        <h4 class="list-group-item-heading">Indicateurs</h4>
+    </a>
+</div>
+
+<!-- MENU CENTRALE -->
+<div class="list-group menu menu-droite" style="right: 300px">
+    <span>Scrumboard</span>
+    <span>Sprint 1</span>
+</div>
+
+<!-- MENU DE DROITE -->
+<div class="list-group menu menu-droite">
+    <a href="#" class="list-group-item" data-menu="projets">
+        <i class="md-apps md-3x"></i>
+        <h4 class="list-group-item-heading">Projets</h4>
+    </a>
+</div>
+
+<!-- CONTENU DU MENU PROJETS -->
+<div class="menu-content droite" data-menu="projets">
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#projet-list" aria-controls="projet-list" role="tab"
+                                                  data-toggle="tab">Projets disponibles</a></li>
+        <li role="presentation"><a href="#projet-create" aria-controls="projet-create" role="tab" data-toggle="tab">Créer
+            un projet</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="projet-list">
+            <div class="col-md-12 item"><span>Projet Item</span></div>
+            <div class="col-md-12 item"><span>Projet Item</span></div>
+            <div class="col-md-12 item"><span>Projet Item</span></div>
+            <div class="col-md-12 item"><span>Projet Item</span></div>
+            <div class="col-md-12 item"><span>Projet Item</span></div>
+            <div class="col-md-12 item"><span>Projet Item</span></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="projet-create">
+            <div class="form-group">
+                <label for="projet-name">Nom du Projet</label>
+                <input type="text" class="form-control" id="projet-name">
+            </div>
+            <div class="form-group">
+                <label for="projet-dod">Definition Of Done</label>
+                <textarea class="form-control" rows="3" id="projet-dod"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default">Créer le projet</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- CONTENU DU MENU US -->
+<div class="menu-content gauche" data-menu="usersstories">
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#us-backlog" aria-controls="us-backlog" role="tab"
+                                                  data-toggle="tab">Product Backlog</a></li>
+        <li role="presentation"><a href="#us-create" aria-controls="us-create" role="tab" data-toggle="tab">Créer une
+            US</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="us-backlog">
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+            <div class="col-md-6 item"><span>US Item</span></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="us-create">
+            <div class="form-group">
+                <label for="us-name">Nom de l'US</label>
+                <input type="text" class="form-control" id="us-name">
+            </div>
+            <div class="form-group">
+                <label for="us-te">Effort Technique</label>
+                <input type="text" class="form-control" id="us-te">
+            </div>
+            <div class="form-group">
+                <label for="us-bv">Valeur Métier</label>
+                <input type="text" class="form-control" id="us-bv">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default">Ajouter l'user-story</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- CONTENU DU MENU INDICATEURS -->
+<div class="menu-content gauche" data-menu="indicateurs">
+
+    <ul class="nav nav-tabs" role="tablist">
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="indic-te">
+            <div class="form-group">
+                <label for="sprint-name">Effort Technique</label>
+                <span class="indic-item total"><span class="indic-item"></span></span>
+            </div>
+            <div class="form-group">
+                <label for="sprint-name">Valeur Métier</label>
+                <span class="indic-item total"><span class="indic-item"></span></span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- CONTENU DU MENU SPRINTS -->
+<div class="menu-content gauche" data-menu="sprints">
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#sprint-list" aria-controls="sprint-list" role="tab"
+                                                  data-toggle="tab">Sprints</a></li>
+        <li role="presentation"><a href="#sprint-create" aria-controls="sprint-create" role="tab" data-toggle="tab">Créer
+            un sprint</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="sprint-list">
+            <div class="col-md-1 sprint-item">Sprint Item</div>
+            <div class="col-md-1 sprint-item">Sprint Item</div>
+            <div class="col-md-1 sprint-item">Sprint Item</div>
+            <div class="col-md-1 sprint-item">Sprint Item</div>
+            <div class="col-md-1 sprint-item">Sprint Item</div>
+            <div class="col-md-1 sprint-item">Sprint Item</div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="sprint-create">
+            <div class="form-group">
+                <label for="sprint-name">Nom du sprint</label>
+                <input type="text" class="form-control" id="sprint-name">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default">Ajouter le sprint</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- CONTENU DU MENU SPRINTS -->
+<div class="menu-content gauche" data-menu="taches">
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#tache-list" aria-controls="tache-list" role="tab"
+                                                  data-toggle="tab">Sprints</a></li>
+        <li role="presentation"><a href="#tache-create" aria-controls="tache-create" role="tab" data-toggle="tab">Créer
+            un sprint</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tache-list">
+            <div class="col-md-1 tache-item">tache Item</div>
+            <div class="col-md-1 tache-item">tache Item</div>
+            <div class="col-md-1 tache-item">tache Item</div>
+            <div class="col-md-1 tache-item">tache Item</div>
+            <div class="col-md-1 tache-item">tache Item</div>
+            <div class="col-md-1 tache-item">tache Item</div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tache-create">
+            <div class="form-group">
+                <label for="tache-name">Nom du sprint</label>
+                <input type="text" class="form-control" id="tache-name">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default">Ajouter la tache</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ZONES SCRUMBOARD -->
+<div class="scrumzone scrumzone-us">
+    <h2>US</h2>
+</div>
+
+<div class="scrumzone scrumzone-todo">
+    <h2>A faire</h2>
+</div>
+
+<div class="scrumzone scrumzone-wip">
+    <h2>En cours</h2>
+</div>
+
+<div class="scrumzone scrumzone-done">
+    <h2>Terminé</h2>
+</div>
+
+
+<!--
+<div class="menu-content" data-menu="sprints"></div>
+<div class="menu-content" data-menu="usersstories"></div>
+<div class="menu-content" data-menu="taches"></div>
+<div class="menu-content" data-menu="indicateurs"></div>
+-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
