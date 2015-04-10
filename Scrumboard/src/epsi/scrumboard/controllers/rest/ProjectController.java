@@ -28,7 +28,7 @@ public class ProjectController {
         Project project = new Project();
         project.setName("Test nom projet");
         project.setDod("Test dod");
-        projectService.addProject(project);;
+        projectService.addProject(project);
 
 
     }
