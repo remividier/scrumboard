@@ -41,7 +41,7 @@ $('#projet-list .item').on('click', function(){
 
 	$.ajax({
   method: "POST",
-  url: "/addProject",
+  url: "rest/addProject",
   data: { name: "John", dod: "Boston" }
 }).done(function() {
     alert( "success" );

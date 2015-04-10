@@ -21,13 +21,18 @@ public class ProjectController {
     @Resource
     ProjectService projectService;
 
-    @RequestMapping(value="/addProject", method= RequestMethod.GET)
+    @RequestMapping(value="/addProject", method= RequestMethod.POST)
     public void addProject(HttpServletRequest request, HttpServletResponse response) {
 
 
+
+        String name = request.getParameter("name");
+        String dod = request.getParameter("dod") ;
+
         Project project = new Project();
-        project.setName("Test nom projet");
-        project.setDod("Test dod");
+
+        project.setName(name);
+        project.setDod(dod);
         projectService.addProject(project);
 
 
