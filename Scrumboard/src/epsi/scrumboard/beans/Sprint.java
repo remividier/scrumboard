@@ -1,4 +1,4 @@
-package epsi.scrumboard.factories;
+package epsi.scrumboard.beans;
 
 /**
  * Created by eklektik on 26/03/2015.
