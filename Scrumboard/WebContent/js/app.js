@@ -45,6 +45,7 @@ $('#projet-list .item').on('click', function () {
 });
 
 
+// AJOUT D'UN PROJET
 $('#projet-add').on('click', function () {
 
     $.ajax({
@@ -56,10 +57,9 @@ $('#projet-add').on('click', function () {
         // Clear form
         document.getElementById('projet-name').value = "";
         document.getElementById('projet-dod').value = "";
-    })
-        .fail(function () {
-            alert("error");
-        });
+    }).fail(function () {
+        alert("error");
+    });
 
 });
 
