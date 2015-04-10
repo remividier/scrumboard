@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Scrumboard:war">
+    <output-path>$PROJECT_DIR$/Scrumboard/target</output-path>
+    <root id="archive" name="Scrumboard-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Scrumboard:war exploded" />
+    </root>
+  </artifact>
+</component>
