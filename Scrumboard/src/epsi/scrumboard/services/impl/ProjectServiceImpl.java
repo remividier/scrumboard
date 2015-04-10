@@ -5,6 +5,10 @@ import com.mongodb.DBObject;
 import epsi.scrumboard.beans.Project;
 import epsi.scrumboard.mongo.Connection;
 import epsi.scrumboard.services.ProjectService;
+import org.bson.types.ObjectId;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Pierre on 10/04/2015.
@@ -21,8 +25,22 @@ public class ProjectServiceImpl implements ProjectService {
 
         Connection.insert(projectForDB,"projects");
 
+    }
 
+    @Override
+    public List<Project> getProjects() {
 
+        List<Project> result = new ArrayList<Project>();
+        List<DBObject> projectsFromDB = Connection.find("projects",new BasicDBObject(), new BasicDBObject());
+        for (DBObject project : projectsFromDB) {
+            Project temp = new Project();
+            temp.setName(project.get("name").toString());
+            ObjectId idProject = (ObjectId) project.get("_id");
+            String objectIdForProject  = idProject.toHexString();
+            temp.setId(objectIdForProject);
+            result.add(temp);
+        }
+        return result;
 
     }
 }

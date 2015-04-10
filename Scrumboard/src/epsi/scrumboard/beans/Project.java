@@ -7,10 +7,19 @@ import java.util.ArrayList;
  */
 public class Project {
 
+    private String id;
     private  String name;
     private   String dod;
     private ArrayList<UserStory> userStories = new ArrayList<UserStory>();
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
