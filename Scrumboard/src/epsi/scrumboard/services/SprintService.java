@@ -1,6 +1,6 @@
 package epsi.scrumboard.services;
 
-import epsi.scrumboard.beans.Project;
+import epsi.scrumboard.beans.Sprint;
 
 /**
  * Created by eklektik on 10/04/2015.
@@ -8,7 +8,13 @@ import epsi.scrumboard.beans.Project;
 public interface SprintService {
 
 
-    void addProject (Project project);
+    public String getName();
+
+    public void setName(String name);
+
+    public ArrayList<Task> getTasks();
+
+    public void setTasks(ArrayList<Task> tasks);
 
 
 }
