@@ -31,7 +31,7 @@ public class UserStoryController {
         us.setName(request.getParameter("name").toString());
 
         // ATTENTION A L'ID EN BASE
-        String test = "55282ef5bc0423e748a9836f";
+        String test = "55292b018bfb68d822242f33";
         us.setTechnicalEffort(Integer.parseInt(request.getParameter("te")));
         us.setBusinessValue(Integer.parseInt(request.getParameter("bv")));
 

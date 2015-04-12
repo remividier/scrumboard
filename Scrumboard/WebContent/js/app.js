@@ -50,14 +50,39 @@ $('#projet-add').on('click', function () {
     $.ajax({
         method: "POST",
         url: "rest/project",
-        data: {name: document.getElementById('projet-name').value, dod: document.getElementById('projet-dod').value}
+        data: { name: document.getElementById('projet-name').value,
+                dod: document.getElementById('projet-dod').value
+                }
     }).done(function () {
         console.log("[SUCCESS] Ajout d'un projet.");
+
+
         // Clear form
         document.getElementById('projet-name').value = "";
         document.getElementById('projet-dod').value = "";
     }).fail(function () {
         console.log("[ERROR] Ajout d'un projet.");
+    });
+
+});
+
+
+
+// AJOUT D'UNE TACHE
+$('#task-add').on('click', function () {
+
+    $.ajax({
+        method: "POST",
+        url: "rest/userStory",
+        data: {
+            name: document.getElementById('task-name').value,
+        }
+    }).done(function () {
+        console.log("[SUCCESS] Ajout d'une tâche.");
+        // Clear form
+        document.getElementById('task-name').value = "";
+    }).fail(function () {
+        console.log("[ERROR] Ajout d'une tâche.");
     });
 
 });
@@ -80,7 +105,7 @@ $('#us-add').on('click', function () {
         document.getElementById('us-te').value = "";
         document.getElementById('us-bv').value = "";
     }).fail(function () {
-        console.log("[SUCCESS] Ajout d'une user-story.");
+        console.log("[ERROR] Ajout d'une user-story.");
     });
 
 });
@@ -100,7 +125,7 @@ $('#sprint-add').on('click', function () {
         document.getElementById('sprint-name').value = "";
 
     }).fail(function () {
-        console.log("[SUCCESS] Ajout d'une user-story.");
+        console.log("[ERROR] Ajout d'une user-story.");
     });
 
 });
@@ -117,8 +142,19 @@ $(function () {
         url: "rest/projects"
     }).done(function (data) {
         console.log("[SUCCESS] Récupération des projets.");
+
         if (console && console.log) {
             console.log("Sample of data:", data.slice(0, 100));
+
+            var projetList = document.getElementById("projet-list");
+            for (var i = 0; i < data.length; i++) {
+                var divProject = document.createElement("div");
+                var spanProject = document.createElement("span");
+                spanProject.innerText = data[i]["name"];
+                divProject.appendChild(spanProject);
+                divProject.setAttribute("class","col-md-12 item" );
+                projetList.appendChild(divProject);
+            }
         }
 
     }).fail(function () {
@@ -127,3 +163,35 @@ $(function () {
 
 
 });
+
+// REFRESH PROJET
+
+ $('#availables_projects').on('click', function () {
+
+     var toto = $.ajax({
+         method: "GET",
+         url: "rest/projects"
+     }).done(function (data) {
+         console.log("[SUCCESS] Récupération des projets.");
+
+         if (console && console.log) {
+             console.log("Sample of data:", data.slice(0, 100));
+
+             var projectList = document.getElementById("projet-list");
+             projectList.innerHTML ="";
+             for (var i = 0; i < data.length; i++) {
+                 var divProject = document.createElement("div");
+                 var spanProject = document.createElement("span");
+                 spanProject.innerText = data[i]["name"];
+                 divProject.appendChild(spanProject);
+                 divProject.setAttribute("class","col-md-12 item" );
+                 projectList.appendChild(divProject);
+             }
+         }
+
+     }).fail(function () {
+         console.log("[ERROR] Récupération des projets.");
+     });
+
+
+ });

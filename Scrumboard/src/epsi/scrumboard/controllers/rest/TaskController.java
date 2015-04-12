@@ -26,8 +26,11 @@ public class TaskController {
 
         Task task = new Task();
         String nameTask = request.getParameter("name");
-        task.setNomTache(nameTask);
+        task.setName(nameTask);
 
+        String idProjectTmp ="55292b018bfb68d822242f33";
+        String idSprintTmp = "84bec340-32a5-4bfb-b941-2f7384d5100f";
+        taskService.addTask(idProject,idSprint,task);
 
     }
 

@@ -30,7 +30,7 @@ public class SprintController {
 
         String nameSprint = request.getParameter("name");
         Sprint sprint = new Sprint();
-        String id = "55282ef5bc0423e748a9836f";
+        String id = "55292b018bfb68d822242f33";
         sprint.setName(nameSprint);
         sprintService.addSprint(id,sprint);
 

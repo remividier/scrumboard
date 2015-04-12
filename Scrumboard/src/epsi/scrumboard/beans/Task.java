@@ -4,15 +4,23 @@ package epsi.scrumboard.beans;
  * Created by eklektik on 26/03/2015.
  */
 public class Task {
-    //Stocke le nom de la tache
 
-    String nomTache;
+    private String name;
+    private String id;
 
-    public String getNomTache() {
-        return nomTache;
+    public String getName() {
+        return name;
     }
 
-    public void setNomTache(String nomTache) {
-        this.nomTache = nomTache;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
