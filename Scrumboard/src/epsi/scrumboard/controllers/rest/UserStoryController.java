@@ -8,10 +8,12 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by Pierre on 10/04/2015.
@@ -31,15 +33,20 @@ public class UserStoryController {
         us.setName(request.getParameter("name").toString());
 
         // ATTENTION A L'ID EN BASE
-        String test = "55292b018bfb68d822242f33";
+        String idProject = (request.getParameter("idProject").toString());
         us.setTechnicalEffort(Integer.parseInt(request.getParameter("te")));
         us.setBusinessValue(Integer.parseInt(request.getParameter("bv")));
 
-
-
-
-        userStoryService.addUserStory(us, test);
+        userStoryService.addUserStory(us, idProject);
 
     }
+
+    @RequestMapping(value="/userStories",method=RequestMethod.GET)
+    public @ResponseBody
+    List<UserStory> getUserStories (HttpServletRequest request, HttpServletResponse response) {
+        String idProject = request.getParameter("idProject");
+        return userStoryService.getUerStories(idProject);
+    }
+
 
 }

@@ -36,17 +36,9 @@ $('a.list-group-item').on('click', function () {
     $('.menu-content[data-menu=' + menu + ']').css('visibility', 'visible');
 });
 
-$('#projet-list .item').on('click', function () {
-
-    // TODO Charger les données du projet en question
-    afficherActions();
-    afficherScrumzone();
-});
-
 
 // AJOUT D'UN PROJET
 $('#projet-add').on('click', function () {
-
     $.ajax({
         method: "POST",
         url: "rest/project",
@@ -54,16 +46,11 @@ $('#projet-add').on('click', function () {
                 dod: document.getElementById('projet-dod').value
                 }
     }).done(function () {
-        console.log("[SUCCESS] Ajout d'un projet.");
-
-
+        refreshProjectList();
         // Clear form
         document.getElementById('projet-name').value = "";
         document.getElementById('projet-dod').value = "";
-    }).fail(function () {
-        console.log("[ERROR] Ajout d'un projet.");
     });
-
 });
 
 
@@ -73,61 +60,43 @@ $('#task-add').on('click', function () {
 
     $.ajax({
         method: "POST",
-        url: "rest/userStory",
+        url: "rest/task",
         data: {
             name: document.getElementById('task-name').value,
+            idProject : idProjectGlobal,
+            idSprint : idSprintGlobal
         }
     }).done(function () {
-        console.log("[SUCCESS] Ajout d'une tâche.");
-        // Clear form
+        loadTasks(idProjectGlobal, idSprintGlobal);
         document.getElementById('task-name').value = "";
-    }).fail(function () {
-        console.log("[ERROR] Ajout d'une tâche.");
     });
 
 });
 
 // AJOUT D'UNE US
 $('#us-add').on('click', function () {
-
     $.ajax({
         method: "POST",
         url: "rest/userStory",
-        data: {
-            name: document.getElementById('us-name').value,
-            te: document.getElementById('us-te').value,
-            bv: document.getElementById('us-bv').value
-        }
+        data: { name: document.getElementById('us-name').value, te: document.getElementById('us-te').value, bv: document.getElementById('us-bv').value, idProject : idProjectGlobal}
     }).done(function () {
-        console.log("[SUCCESS] Ajout d'une user-story.");
-        // Clear form
+        loadUserStories(idProjectGlobal);
         document.getElementById('us-name').value = "";
         document.getElementById('us-te').value = "";
         document.getElementById('us-bv').value = "";
-    }).fail(function () {
-        console.log("[ERROR] Ajout d'une user-story.");
     });
-
 });
 
 // AJOUT D'UN SPRINT
 $('#sprint-add').on('click', function () {
-
     $.ajax({
         method: "POST",
         url: "rest/sprint",
-        data: {
-            name: document.getElementById('sprint-name').value,
-        }
+        data: { name: document.getElementById('sprint-name').value, idProject : idProjectGlobal}
     }).done(function () {
-        console.log("[SUCCESS] Ajout d'un sprint.");
-        // Clear form
+        loadSprints(idProjectGlobal);
         document.getElementById('sprint-name').value = "";
-
-    }).fail(function () {
-        console.log("[ERROR] Ajout d'une user-story.");
     });
-
 });
 
 
@@ -136,62 +105,138 @@ $(function () {
     placerScrumzone();
     $('.menu a[data-menu=projets]').click();
     console.log("ready!");
+    refreshProjectList();
+});
 
-    var toto = $.ajax({
+
+// REFRESH PROJET
+ $('#availables_projects').on('click', function () {
+     refreshProjectList();
+ });
+
+
+function refreshProjectList () {
+    $.ajax({
         method: "GET",
         url: "rest/projects"
     }).done(function (data) {
-        console.log("[SUCCESS] Récupération des projets.");
-
-        if (console && console.log) {
-            console.log("Sample of data:", data.slice(0, 100));
-
-            var projetList = document.getElementById("projet-list");
+            var projectList = document.getElementById("projet-list");
+            projectList.innerHTML ="";
             for (var i = 0; i < data.length; i++) {
                 var divProject = document.createElement("div");
                 var spanProject = document.createElement("span");
                 spanProject.innerText = data[i]["name"];
                 divProject.appendChild(spanProject);
                 divProject.setAttribute("class","col-md-12 item" );
-                projetList.appendChild(divProject);
+                var idProject = data[i]["id"];
+               divProject.setAttribute("onclick","afficherActions(); afficherScrumzone();loadDataProject('"+idProject+"');");
+                projectList.appendChild(divProject);
             }
-        }
+        });
+}
 
+var idProjectGlobal;
+var idSprintGlobal;
+
+function loadDataProject(idProject) {
+
+    idSprintGlobal = {};
+    var sprintList = document.getElementById("sprint-list");
+    sprintList.innerHTML ="";
+    var taskList = document.getElementById("task-list");
+    taskList.innerHTML ="";
+    var US = document.getElementById("us-backlog");
+    US.innerHTML ="";
+
+    idProjectGlobal = idProject;
+
+    loadSprints(idProjectGlobal);
+    loadUserStories(idProjectGlobal);
+}
+
+function loadSprints(idProject)  {
+    $.ajax({
+        method: "GET",
+        url: "rest/sprint",
+        data: {
+            idProject : idProject
+        }
+    }).done(function (data) {
+
+        console.log("[SUCCESS] Récupération sprints.");
+        var sprintList = document.getElementById("sprint-list");
+        sprintList.innerHTML ="";
+        for (var i = 0; i < data.length; i++) {
+            var divSprint = document.createElement("div");
+            var spanSprint = document.createElement("span");
+            spanSprint.innerText = data[i]["name"];
+            divSprint.appendChild(spanSprint);
+            divSprint.setAttribute("class","col-md-12 item" );
+            var idSprint = data[i]["id"];
+            console.log(data[i]);
+
+            divSprint.setAttribute("onclick","loadTasks('"+idProject+"','"+idSprint+"');");
+            sprintList.appendChild(divSprint);
+        }
     }).fail(function () {
-        console.log("[ERROR] Récupération des projets.");
+        console.log("[ERROR] Récupération sprints. ");
+    });
+}
+
+
+function loadUserStories(idProject) {
+    $.ajax({
+        method: "GET",
+        url: "rest/userStories",
+        data: {
+            idProject : idProject
+        }
+    }).done(function (data) {
+        console.log("[SUCCESS] Récupération User Stories.");
+        var backlog = document.getElementById("us-backlog");
+        backlog.innerHTML ="";
+        for (var i = 0; i < data.length; i++) {
+            var divUS = document.createElement("div");
+            var spanUS = document.createElement("span");
+            spanUS.innerText = data[i]["name"];
+            divUS.appendChild(spanUS);
+            divUS.setAttribute("class","col-md-12 item" );
+            var idSprint = data[i]["idUS"];
+            //divProject.setAttribute("onclick","afficherActions(); afficherScrumzone();loadDataProject('"+idProject+"');");
+            backlog.appendChild(divUS);
+        }
+    }).fail(function () {
+        console.log("[ERROR] Récupération User stories. ");
+    });
+}
+
+function loadTasks(idProject, idSprint) {
+
+    idSprintGlobal = idSprint;
+    $.ajax({
+        method: "GET",
+        url: "rest/task",
+        data: {
+            idProject : idProject,
+            idSprint : idSprint
+        }
+    }).done(function (data) {
+        console.log("[SUCCESS] Récupération User Stories.");
+        var taskList = document.getElementById("task-list");
+        taskList.innerHTML ="";
+        for (var i = 0; i < data.length; i++) {
+            var divTask = document.createElement("div");
+            var spanTask = document.createElement("span");
+            spanTask.innerText = data[i]["name"];
+            divTask.appendChild(spanTask);
+            divTask.setAttribute("class","col-md-12 item" );
+            var idSprint = data[i]["idTask"];
+            //divProject.setAttribute("onclick","afficherActions(); afficherScrumzone();loadDataProject('"+idProject+"');");
+            taskList.appendChild(divTask);
+        }
+    }).fail(function () {
+        console.log("[ERROR] Récupération User stories. ");
     });
 
 
-});
-
-// REFRESH PROJET
-
- $('#availables_projects').on('click', function () {
-
-     var toto = $.ajax({
-         method: "GET",
-         url: "rest/projects"
-     }).done(function (data) {
-         console.log("[SUCCESS] Récupération des projets.");
-
-         if (console && console.log) {
-             console.log("Sample of data:", data.slice(0, 100));
-
-             var projectList = document.getElementById("projet-list");
-             projectList.innerHTML ="";
-             for (var i = 0; i < data.length; i++) {
-                 var divProject = document.createElement("div");
-                 var spanProject = document.createElement("span");
-                 spanProject.innerText = data[i]["name"];
-                 divProject.appendChild(spanProject);
-                 divProject.setAttribute("class","col-md-12 item" );
-                 projectList.appendChild(divProject);
-             }
-         }
-
-     }).fail(function () {
-         console.log("[ERROR] Récupération des projets.");
-     });
-
-
- });
+}

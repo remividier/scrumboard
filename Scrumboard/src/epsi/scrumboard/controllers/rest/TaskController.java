@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by Pierre on 10/04/2015.
@@ -20,19 +22,36 @@ public class TaskController {
     @Resource
     TaskService taskService;
 
-    @RequestMapping(value="/task/{idProject}/{idSprint}", method= RequestMethod.GET)
+    @RequestMapping(value="/task", method= RequestMethod.POST)
     public @ResponseBody
-    void addTaskToSprint(@PathVariable("idProject") String idProject, @PathVariable("idSprint") String idSprint, HttpServletRequest request, HttpServletRequest response) {
+    void addTaskToSprint(HttpServletRequest request, HttpServletRequest response) {
 
         Task task = new Task();
         String nameTask = request.getParameter("name");
         task.setName(nameTask);
 
-        String idProjectTmp ="55292b018bfb68d822242f33";
-        String idSprintTmp = "84bec340-32a5-4bfb-b941-2f7384d5100f";
+        String idProject = request.getParameter("idProject").toString();
+        String idSprint =  request.getParameter("idSprint").toString();
         taskService.addTask(idProject,idSprint,task);
 
+
+
     }
+
+    @RequestMapping(value="/task",method=RequestMethod.GET)
+    public @ResponseBody
+    List<Task> getTqsks ( HttpServletRequest request, HttpServletResponse response ) {
+
+        String idPorjtect = request.getParameter("idProject").toString();
+        String idSprint = request.getParameter("idSprint").toString();
+        return taskService.getTasks(idPorjtect, idSprint);
+
+    }
+
+
+
+
+
 
 
 

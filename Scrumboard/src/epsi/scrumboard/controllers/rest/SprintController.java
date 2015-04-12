@@ -12,6 +12,7 @@ import sun.net.httpserver.HttpServerImpl;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by Pierre on 10/04/2015.
@@ -22,19 +23,27 @@ public class SprintController {
     @Resource
     SprintService sprintService;
 
-
-
     @RequestMapping(value="/sprint", method= RequestMethod.POST)
     public @ResponseBody void addSprint (HttpServletRequest request, HttpServletResponse response) {
-
-
         String nameSprint = request.getParameter("name");
         Sprint sprint = new Sprint();
-        String id = "55292b018bfb68d822242f33";
+        String idProject = request.getParameter("idProject").toString();
         sprint.setName(nameSprint);
-        sprintService.addSprint(id,sprint);
-
+        sprintService.addSprint(idProject,sprint);
     }
+
+    @RequestMapping(value="/sprint", method=RequestMethod.GET)
+    public @ResponseBody
+    List<Sprint> getSprints(HttpServletRequest request, HttpServletResponse response) {
+        String idProject = request.getParameter("idProject").toString();
+        return sprintService.getSprints(idProject);
+    }
+
+
+
+
+
+
 
 
 

@@ -12,5 +12,5 @@ public interface SprintService {
     void addSprint(String idProject, Sprint sprint);
 
 
-    List<Sprint> getSprints();
+    List<Sprint> getSprints(String idProject);
 }
