@@ -30,12 +30,20 @@ public class UserStoryController {
 
 
         UserStory us = new UserStory();
-        us.setName(request.getParameter("name").toString());
 
         // ATTENTION A L'ID EN BASE
         String idProject = (request.getParameter("idProject").toString());
-        us.setTechnicalEffort(Integer.parseInt(request.getParameter("te")));
-        us.setBusinessValue(Integer.parseInt(request.getParameter("bv")));
+
+        try {
+            us.setName(request.getParameter("name").toString());
+            us.setTechnicalEffort(Integer.parseInt(request.getParameter("te")));
+            us.setBusinessValue(Integer.parseInt(request.getParameter("bv")));
+        } catch (NumberFormatException e) {
+            System.out.println("coucou");
+            us.setBusinessValue(0);
+            us.setTechnicalEffort(0);
+        }
+
 
         userStoryService.addUserStory(us, idProject);
 
