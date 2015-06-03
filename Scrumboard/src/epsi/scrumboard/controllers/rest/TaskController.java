@@ -32,7 +32,8 @@ public class TaskController {
 
         String idProject = request.getParameter("idProject").toString();
         String idSprint =  request.getParameter("idSprint").toString();
-        taskService.addTask(idProject,idSprint,task);
+        String idUS = request.getParameter("idUserStory").toString();
+        taskService.addTask(idProject,idSprint, idUS,task);
 
 
 

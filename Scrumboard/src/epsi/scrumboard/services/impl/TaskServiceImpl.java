@@ -19,7 +19,7 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public void addTask(String idProject, String idSprint, Task task) {
+    public void addTask(String idProject, String idSprint, String idUS, Task task) {
 
         List<DBObject> projectForDB = Connection.find("projects", new BasicDBObject("_id", new ObjectId(idProject)), new BasicDBObject());
         DBObject project = projectForDB.get(0);
@@ -32,7 +32,8 @@ public class TaskServiceImpl implements TaskService {
                 }
                 BasicDBList tasks = (BasicDBList) sprintTemp.get("tasks");
                 String idTask = UUID.randomUUID().toString();
-                BasicDBObject taskForDB = new BasicDBObject("idTask",idTask).append("name",task.getName());
+                BasicDBObject taskForDB = new BasicDBObject("idTask",idTask).append("name",task.getName())
+                        .append("idUS",idUS);
                 tasks.add(taskForDB);
             }
 

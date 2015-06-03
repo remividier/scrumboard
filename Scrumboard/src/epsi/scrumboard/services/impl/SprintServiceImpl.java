@@ -38,26 +38,29 @@ public class SprintServiceImpl implements SprintService {
         List<DBObject> projectForDB = Connection.find("projects",new BasicDBObject("_id",new ObjectId(idProject)), new BasicDBObject());
         DBObject project = projectForDB.get(0);
         BasicDBList sprints = (BasicDBList) project.get("sprints");
-        for (String s : sprints.keySet()) {
-            DBObject sprintFromDB = (DBObject) sprints.get(s);
-            Sprint sprint = new Sprint();
-            sprint.setId(sprintFromDB.get("idSprint").toString());
-            sprint.setName(sprintFromDB.get("name").toString());
-            ArrayList<Task> tasksOfSprint = new ArrayList<Task>();
-            BasicDBList listTasks = (BasicDBList) sprintFromDB.get("tasks");
-            if ( listTasks != null) {
-                for (String t : listTasks.keySet()) {
-                    DBObject taskFromDB = (DBObject)listTasks.get(t);
-                    Task task = new Task();
-                    task.setId(taskFromDB.get("idTask").toString());
-                    task.setName(taskFromDB.get("name").toString());
-                    tasksOfSprint.add(task);
+        if (sprints != null) {
+            for (String s : sprints.keySet()) {
+                DBObject sprintFromDB = (DBObject) sprints.get(s);
+                Sprint sprint = new Sprint();
+                sprint.setId(sprintFromDB.get("idSprint").toString());
+                sprint.setName(sprintFromDB.get("name").toString());
+                ArrayList<Task> tasksOfSprint = new ArrayList<Task>();
+                BasicDBList listTasks = (BasicDBList) sprintFromDB.get("tasks");
+                if ( listTasks != null) {
+                    for (String t : listTasks.keySet()) {
+                        DBObject taskFromDB = (DBObject)listTasks.get(t);
+                        Task task = new Task();
+                        task.setId(taskFromDB.get("idTask").toString());
+                        task.setName(taskFromDB.get("name").toString());
+                        tasksOfSprint.add(task);
+                    }
+                    sprint.setTasks(tasksOfSprint);
                 }
-                sprint.setTasks(tasksOfSprint);
-            }
 
-            result.add(sprint);
+                result.add(sprint);
+            }
         }
+
 
         return result;
     }

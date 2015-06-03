@@ -31,7 +31,8 @@ public class UserStoryServiceImpl implements UserStoryService {
         String idUS = UUID.randomUUID().toString();
         BasicDBObject userStory = new BasicDBObject("name",us.getName())
                 .append("te",us.getTechnicalEffort())
-                .append("bv",us.getBusinessValue()).append("idUS",idUS);
+                .append("bv",us.getBusinessValue()).append("idUS",idUS)
+                .append("statut","product_backlog");
 
         userStories.add(userStory);
         project.put("userStories",userStories);
@@ -44,15 +45,18 @@ public class UserStoryServiceImpl implements UserStoryService {
         List<DBObject> projectForDB = Connection.find("projects",new BasicDBObject("_id",new ObjectId(idProject)), new BasicDBObject());
         DBObject project = projectForDB.get(0);
         BasicDBList userStories = (BasicDBList) project.get("userStories");
-        for (String s : userStories.keySet()) {
-            DBObject USFromDb = (DBObject) userStories.get(s);
-            UserStory  US = new UserStory();
-            US.setId(USFromDb.get("idUS").toString());
-            US.setName(USFromDb.get("name").toString());
-            US.setBusinessValue(Integer.parseInt(USFromDb.get("bv").toString()));
-            US.setTechnicalEffort(Integer.parseInt(USFromDb.get("te").toString()));
-            result.add(US);
+        if (userStories != null) {
+            for (String s : userStories.keySet()) {
+                DBObject USFromDb = (DBObject) userStories.get(s);
+                UserStory  US = new UserStory();
+                US.setId(USFromDb.get("idUS").toString());
+                US.setName(USFromDb.get("name").toString());
+                US.setBusinessValue(Integer.parseInt(USFromDb.get("bv").toString()));
+                US.setTechnicalEffort(Integer.parseInt(USFromDb.get("te").toString()));
+                result.add(US);
+            }
         }
+
         return result;
     }
 }

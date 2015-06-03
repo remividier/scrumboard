@@ -12,7 +12,26 @@ public class Project {
     private   String dod;
     private ArrayList<UserStory> userStories = new ArrayList<UserStory>();
     private ArrayList<Sprint> sprints = new ArrayList<Sprint>();
+    private int teTotal ;
+    private int bvTotal ;
+    private int teDone;
+    private int bvDone;
 
+    public int getTeTotal() {
+        return teTotal;
+    }
+
+    public void setTeTotal(int teTotal) {
+        this.teTotal = teTotal;
+    }
+
+    public int getBvTotal() {
+        return bvTotal;
+    }
+
+    public void setBvTotal(int bvTotal) {
+        this.bvTotal = bvTotal;
+    }
 
     public String getId() {
         return id;
@@ -52,5 +71,21 @@ public class Project {
 
     public void setSprints(ArrayList<Sprint> sprints) {
         this.sprints = sprints;
+    }
+
+    public int getTeDone() {
+        return teDone;
+    }
+
+    public void setTeDone(int teDone) {
+        this.teDone = teDone;
+    }
+
+    public int getBvDone() {
+        return bvDone;
+    }
+
+    public void setBvDone(int bvDone) {
+        this.bvDone = bvDone;
     }
 }

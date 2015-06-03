@@ -38,6 +38,44 @@ public class ProjectServiceImpl implements ProjectService {
             String objectIdForProject  = idProject.toHexString();
             temp.setId(objectIdForProject);
             result.add(temp);
+
+            ArrayList<UserStory> userStories = new ArrayList<UserStory>();
+            DBObject userStoriesFromDB = (DBObject) project.get("userStories");
+
+            int teTotal = 0 ;
+            int bvTotal = 0 ;
+
+            int teDone = 0 ;
+            int bvDone = 0 ;
+            System.out.println(userStoriesFromDB);
+            if (userStoriesFromDB != null) {
+                for (String key : userStoriesFromDB.keySet()) {
+                    DBObject userStory  = (DBObject) userStoriesFromDB.get(key);
+                    Object statut = userStory.get("statut");
+                    if (statut != null) {
+                        String statutStr = statut.toString();
+                        switch (statutStr) {
+                            case "done" :
+                                bvDone += Integer.parseInt(userStory.get("bv").toString());
+                                teDone +=  Integer.parseInt(userStory.get("te").toString());
+                                break;
+                            default:
+                                teTotal += Integer.parseInt(userStory.get("te").toString());
+                                bvTotal += Integer.parseInt(userStory.get("bv").toString());
+                                break;
+                        }
+                    }
+
+                }
+            }
+
+
+            temp.setBvDone(bvDone);
+            temp.setTeDone(teDone);
+
+            temp.setBvTotal(bvTotal);
+            temp.setTeTotal(teTotal);
+
         }
         return result;
     }
@@ -58,6 +96,10 @@ public class ProjectServiceImpl implements ProjectService {
 
         ArrayList<UserStory> userStories = new ArrayList<UserStory>();
         DBObject userStoriesFromDB = (DBObject) project.get("userStories");
+
+        int teTotal = 0 ;
+        int bvTotal = 0 ;
+
         for (String key : userStoriesFromDB.keySet()) {
             DBObject userStory  = (DBObject) userStoriesFromDB.get(key);
             UserStory userStoryTemp = new UserStory();
@@ -65,8 +107,16 @@ public class ProjectServiceImpl implements ProjectService {
             userStoryTemp.setBusinessValue(Integer.parseInt(userStory.get("bv").toString()));
             userStoryTemp.setTechnicalEffort(Integer.parseInt(userStory.get("te").toString()));
             userStories.add(userStoryTemp);
+            System.out.println(Integer.parseInt(userStory.get("te").toString()));
+            teTotal += Integer.parseInt(userStory.get("te").toString());
+            bvTotal += Integer.parseInt(userStory.get("bv").toString());
+
         }
+
         result.setUserStories(userStories);
+        result.setBvTotal(bvTotal);
+        result.setTeTotal(teTotal);
+
 
         ArrayList<Sprint> sprints = new ArrayList<Sprint>();
         DBObject sprintsFromDb = (DBObject) project.get("sprints");

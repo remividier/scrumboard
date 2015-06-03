@@ -28,7 +28,6 @@ public class UserStoryController {
     @RequestMapping(value = "/userStory", method = RequestMethod.POST)
     public void addUserStory(HttpServletRequest request, HttpServletResponse response) {
 
-
         UserStory us = new UserStory();
 
         // ATTENTION A L'ID EN BASE
@@ -39,7 +38,6 @@ public class UserStoryController {
             us.setTechnicalEffort(Integer.parseInt(request.getParameter("te")));
             us.setBusinessValue(Integer.parseInt(request.getParameter("bv")));
         } catch (NumberFormatException e) {
-            System.out.println("coucou");
             us.setBusinessValue(0);
             us.setTechnicalEffort(0);
         }
@@ -55,6 +53,16 @@ public class UserStoryController {
         String idProject = request.getParameter("idProject");
         return userStoryService.getUerStories(idProject);
     }
+
+    @RequestMapping(value = "/userStory/statut", method = RequestMethod.POST)
+    public void updateStatut(HttpServletRequest request, HttpServletResponse response) {
+
+        String idProject = (request.getParameter("idProject").toString());
+        String statut = request.getParameter("statut");
+
+    }
+
+
 
 
 }

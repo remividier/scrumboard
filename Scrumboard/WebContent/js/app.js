@@ -128,16 +128,19 @@ function refreshProjectList () {
         method: "GET",
         url: "rest/projects"
     }).done(function (data) {
+        console.log(data);
             var projectList = document.getElementById("projet-list");
             projectList.innerHTML ="";
             for (var i = 0; i < data.length; i++) {
+
                 var divProject = document.createElement("div");
                 var spanProject = document.createElement("span");
                 spanProject.innerText = data[i]["name"];
                 divProject.appendChild(spanProject);
                 divProject.setAttribute("class","col-md-12 item" );
                 var idProject = data[i]["id"];
-               divProject.setAttribute("onclick","afficherActions(); afficherScrumzone();loadDataProject('"+idProject+"');");
+                var name = data[i]["name"];
+               divProject.setAttribute("onclick","afficherActions(); afficherScrumzone();loadDataProject('"+idProject+"','"+name+"');");
                 projectList.appendChild(divProject);
             }
         });
@@ -146,7 +149,10 @@ function refreshProjectList () {
 var idProjectGlobal;
 var idSprintGlobal;
 
-function loadDataProject(idProject) {
+function loadDataProject(idProject,name) {
+
+
+    document.getElementById("projectName").innerHTML = name;
 
     idSprintGlobal = {};
     var sprintList = document.getElementById("sprint-list");
@@ -181,7 +187,6 @@ function loadSprints(idProject)  {
             divSprint.appendChild(spanSprint);
             divSprint.setAttribute("class","col-md-12 item" );
             var idSprint = data[i]["id"];
-            console.log(data[i]);
 
             divSprint.setAttribute("onclick","loadTasks('"+idProject+"','"+idSprint+"');");
             sprintList.appendChild(divSprint);

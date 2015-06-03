@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface TaskService {
 
-    void addTask(String idProject, String idSprint, Task task);
+    void addTask(String idProject, String idSprint, String idUS, Task task);
 
     List<Task> getTasks (String idProject, String idSprint);
 
