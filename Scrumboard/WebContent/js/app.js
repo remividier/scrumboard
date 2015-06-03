@@ -232,8 +232,13 @@ function loadUserStories(idProject) {
         for (var i = 0; i < data.length; i++) {
             var divUS = document.createElement("div");
             var spanUS = document.createElement("span");
+            var iUS = document.createElement("i");
+            iUS.setAttribute("class","md-layers" );
+
             spanUS.innerText = data[i]["name"];
             divUS.appendChild(spanUS);
+            spanUS.appendChild(iUS);
+
             divUS.setAttribute("class","col-md-6 item" );
             var idSprint = data[i]["idUS"];
 
