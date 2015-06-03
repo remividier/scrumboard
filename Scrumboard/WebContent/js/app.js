@@ -66,10 +66,12 @@ $('#task-add').on('click', function () {
         data: {
             name: document.getElementById('task-name').value,
             idProject : idProjectGlobal,
-            idSprint : idSprintGlobal
+            idSprint : idSprintGlobal,
+            idUserStory : $( "#listUSforTask" ).val()
+
         }
     }).done(function () {
-        loadTasks(idProjectGlobal, idSprintGlobal);
+        loadTasks(idProjectGlobal, idSprintGlobal,"");
         document.getElementById('task-name').value = "";
     });
 
@@ -187,8 +189,10 @@ function loadSprints(idProject)  {
             divSprint.appendChild(spanSprint);
             divSprint.setAttribute("class","col-md-12 item" );
             var idSprint = data[i]["id"];
+            var nameSprint =  data[i]["name"];
+            console.log(data);
 
-            divSprint.setAttribute("onclick","loadTasks('"+idProject+"','"+idSprint+"');");
+            divSprint.setAttribute("onclick","loadTasks('"+idProject+"','"+idSprint+"','"+nameSprint+"');");
             sprintList.appendChild(divSprint);
         }
     }).fail(function () {
@@ -208,6 +212,9 @@ function loadUserStories(idProject) {
         console.log("[SUCCESS] Récupération User Stories.");
         var backlog = document.getElementById("us-backlog");
         backlog.innerHTML ="";
+
+        var selectUS = document.getElementById("listUSforTask");
+
         for (var i = 0; i < data.length; i++) {
             var divUS = document.createElement("div");
             var spanUS = document.createElement("span");
@@ -215,6 +222,12 @@ function loadUserStories(idProject) {
             divUS.appendChild(spanUS);
             divUS.setAttribute("class","col-md-6 item" );
             var idSprint = data[i]["idUS"];
+
+            // Création des otpions pour la liste
+            var option = document.createElement("option");
+            option.innerHTML = data[i]["name"];
+            option.value = data[i]["id"];
+            selectUS.appendChild(option);
             //divProject.setAttribute("onclick","afficherActions(); afficherScrumzone();loadDataProject('"+idProject+"');");
             backlog.appendChild(divUS);
         }
@@ -224,9 +237,13 @@ function loadUserStories(idProject) {
     });
 }
 
-function loadTasks(idProject, idSprint) {
+function loadTasks(idProject, idSprint,nameSprint) {
 
     idSprintGlobal = idSprint;
+
+    if (nameSprint !="") {
+        document.getElementById("sprintName").innerHTML = nameSprint;
+    }
     $.ajax({
         method: "GET",
         url: "rest/task",

@@ -48,12 +48,4 @@ public class TaskController {
         return taskService.getTasks(idPorjtect, idSprint);
 
     }
-
-
-
-
-
-
-
-
 }
