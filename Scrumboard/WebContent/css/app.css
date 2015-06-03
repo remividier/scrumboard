@@ -218,6 +218,7 @@ body{
     text-transform: uppercase;
     font-weight: bolder;
     font-family: 'Calibri Light';
+    display: none;
 }
 
 .scrumzone h2{
