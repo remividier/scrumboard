@@ -122,7 +122,7 @@ body{
     padding-bottom: 0;
 }
 
-.menu-content input, .menu-content textarea{
+.menu-content input, .menu-content textarea, .menu-content select{
   background: rgb(204, 244, 255);
   border-radius: 2px;
   color: black;
