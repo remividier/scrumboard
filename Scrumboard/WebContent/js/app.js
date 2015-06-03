@@ -55,7 +55,16 @@ $('#projet-add').on('click', function () {
     });
 });
 
-
+function drop(ev) {
+    ev.preventDefault();
+    var data=ev.dataTransfer.getData("text/html");
+    /* If you use DOM manipulation functions, their default behaviour it not to
+     copy but to alter and move elements. By appending a ".cloneNode(true)",
+     you will not move the original element, but create a copy. */
+    var nodeCopy = document.getElementById(data).cloneNode(true);
+    nodeCopy.id = "newId"; /* We cannot use the same ID */
+    ev.target.appendChild(nodeCopy);
+}
 
 // AJOUT D'UNE TACHE
 $('#task-add').on('click', function () {
@@ -183,11 +192,16 @@ function loadSprints(idProject)  {
         var sprintList = document.getElementById("sprint-list");
         sprintList.innerHTML ="";
         for (var i = 0; i < data.length; i++) {
+
             var divSprint = document.createElement("div");
             var spanSprint = document.createElement("span");
+            var iSprint = document.createElement("i");
             spanSprint.innerText = data[i]["name"];
             divSprint.appendChild(spanSprint);
+            spanSprint.appendChild(iSprint);
             divSprint.setAttribute("class","col-md-12 item" );
+            iSprint.setAttribute("class","md-close" );
+
             var idSprint = data[i]["id"];
             var nameSprint =  data[i]["name"];
             console.log(data);

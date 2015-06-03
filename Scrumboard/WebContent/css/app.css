@@ -135,6 +135,12 @@ body{
 
 }
 
+.menu-content[data-menu='sprints'] i.md-close{
+    position: absolute;
+    top: 13px;
+    right: 13px;
+}
+
 .menu-content[data-menu='backlog']{
     left: 157px;
 
