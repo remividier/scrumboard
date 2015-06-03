@@ -1,10 +1,12 @@
 // FONCTIONS
 function placerScrumzone() {
     var widthZone = ($(window).width() - (5 * 15) - (4 * 2)) / 4;
-    var heightZone = $(window).height() - 107;
+    var heightZone = $(window).height() - 242;
 
     $('.scrumzone').width(widthZone);
     $('.scrumzone').height(heightZone);
+
+    $('.scrumzone-planning').css({'top': '90px', 'left': '15px', 'width': $(window).width()-30+'px', 'height': '120px'});
 
     $('.scrumzone-us').css('left', '15px');
     $('.scrumzone-todo').css('left', (widthZone + 17) * 1 + 15 + 'px');
@@ -206,11 +208,12 @@ function loadUserStories(idProject) {
             var spanUS = document.createElement("span");
             spanUS.innerText = data[i]["name"];
             divUS.appendChild(spanUS);
-            divUS.setAttribute("class","col-md-12 item" );
+            divUS.setAttribute("class","col-md-6 item" );
             var idSprint = data[i]["idUS"];
             //divProject.setAttribute("onclick","afficherActions(); afficherScrumzone();loadDataProject('"+idProject+"');");
             backlog.appendChild(divUS);
         }
+        $('.menu-content[data-menu=backlog] .item').draggable();
     }).fail(function () {
         console.log("[ERROR] Récupération User stories. ");
     });
@@ -235,14 +238,33 @@ function loadTasks(idProject, idSprint) {
             var spanTask = document.createElement("span");
             spanTask.innerText = data[i]["name"];
             divTask.appendChild(spanTask);
-            divTask.setAttribute("class","col-md-12 item" );
+            divTask.setAttribute("class","col-md-6 item" );
             var idSprint = data[i]["idTask"];
             //divProject.setAttribute("onclick","afficherActions(); afficherScrumzone();loadDataProject('"+idProject+"');");
             taskList.appendChild(divTask);
         }
+        $('.menu-content[data-menu=taches] .item').draggable();
     }).fail(function () {
         console.log("[ERROR] Récupération User stories. ");
     });
 
 
 }
+
+$( ".scrumzone" ).droppable({
+    drop: function( event, ui ) {
+        $( this )
+            .addClass( "ui-state-highlight" )
+            .find( "p" )
+            .html( "Dropped!" );
+    }
+});
+
+$( ".scrumzone" ).droppable({
+    drop: function( event, ui ) {
+        $( this )
+            .addClass( "ui-state-highlight" )
+            .find( "p" )
+            .html( "Dropped!" );
+    }
+});

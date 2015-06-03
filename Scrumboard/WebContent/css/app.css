@@ -135,13 +135,18 @@ body{
 
 }
 
+.menu-content[data-menu='backlog']{
+    left: 157px;
+
+}
+
 .menu-content[data-menu='usersstories']{
-  left: 157px;
+  right: 157px;
 
 }
 
 .menu-content[data-menu='taches']{
-  left: 352px;
+  left: 300px;
 
 }
 
@@ -151,7 +156,7 @@ body{
 }
 
 .menu-content[data-menu='indicateurs']{
-  left: 486px;
+  left: 433px;
 
 }
 
@@ -190,12 +195,20 @@ body{
 
 .scrumzone {
   position: fixed;
-  top: 90px;
+  bottom: 15px;
   height: 100%;
   border: 1px solid rgb(50, 50, 50);
   border-radius: 2px;
   display: none;
     background: url('./ps_neutral.png');
+}
+
+.menu-centre {
+    right: 544px;
+    top: 21px;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: 'Calibri Light';
 }
 
 .scrumzone h2{
@@ -220,6 +233,8 @@ body{
   margin-right: 15px;
   color: #FFFFFF;
   background: rgba(255, 255, 255, 0.2);
+    font-size: 15px;
+    font-family: 'Calibri Light';
 }
 
 .menu-content .nav-tabs>li.active>a {
@@ -239,10 +254,15 @@ body{
 
 .indic-item {
     display: inline-block;
-  height: 34px;
+  height: 30px;
   background: rgb(204, 244, 255);
   width: 50%;
   border-radius: 34px;
+    font-family: 'Calibri Light';
+    padding-right: 10px;
+
+    text-align: right;
+    padding-top: 5px;
 }
 
 .indic-item.total {
@@ -250,8 +270,27 @@ body{
   width: 100%;
 }
 
+.indic-item.done {
+    left: 15px;
+    position: absolute;
+    color: black;
+    margin-top: -5px;
+}
+
 .item{
   padding: 0;
+    height: 50px;
+    margin-bottom: 1px;
+}
+
+.menu-content[data-menu=backlog] .item:nth-child(odd), .menu-content[data-menu=taches] .item:nth-child(odd){
+    padding: 0;
+    padding-right: 5px;
+}
+
+.menu-content[data-menu=backlog] .item:nth-child(even), .menu-content[data-menu=taches] .item:nth-child(even){
+    padding: 0;
+    padding-left: 5px;
 }
 
 .item span{
@@ -261,20 +300,10 @@ body{
   border-radius: 1px;
   margin-bottom: 10px;
   cursor: pointer;
+    font-size: 15px;
+    font-family: 'Calibri Light';
 }
 
-#us-backlog .item:nth-child(even) span{
-  margin-left: 5px;
-}
-
-#us-backlog .item:nth-child(odd) span{
-  margin-right: 5px;
-}
-
-.item:last-child span{
-  margin-bottom: 15px;
-}
-
-#us-backlog .item span{
-  height: 60px;
+.item:last-child{
+  margin-bottom: 6px;
 }

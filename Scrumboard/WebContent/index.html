@@ -22,9 +22,9 @@
         <i class="md-tab md-3x"></i>
         <h4 class="list-group-item-heading">Sprints</h4>
     </a>
-    <a href="#" class="list-group-item" data-menu="usersstories">
+    <a href="#" class="list-group-item" data-menu="backlog">
         <i class="md-add md-3x"></i>
-        <h4 class="list-group-item-heading">Users-Stories</h4>
+        <h4 class="list-group-item-heading">Backlog</h4>
     </a>
     <a href="#" class="list-group-item" data-menu="taches">
         <i class="md-add md-3x"></i>
@@ -37,13 +37,17 @@
 </div>
 
 <!-- MENU CENTRALE -->
-<div class="list-group menu menu-droite" style="right: 300px">
+<div class="list-group menu menu-centre">
     <span id="projectName">Scrumboard</span>
     <span id="sprintName">Sprint 1</span>
 </div>
 
 <!-- MENU DE DROITE -->
 <div class="list-group menu menu-droite">
+    <a href="#" class="list-group-item" data-menu="usersstories">
+        <i class="md-add md-3x"></i>
+        <h4 class="list-group-item-heading">Créer US</h4>
+    </a>
     <a href="#" class="list-group-item" data-menu="projets">
         <i class="md-apps md-3x"></i>
         <h4 class="list-group-item-heading">Projets</h4>
@@ -82,19 +86,26 @@
 </div>
 
 <!-- CONTENU DU MENU US -->
-<div class="menu-content gauche" data-menu="usersstories">
+<div class="menu-content gauche" data-menu="backlog">
 
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#us-backlog" aria-controls="us-backlog" role="tab"
-                                                  data-toggle="tab">Product Backlog</a></li>
-        <li role="presentation"><a href="#us-create" aria-controls="us-create" role="tab" data-toggle="tab">Créer une
-            US</a></li>
     </ul>
 
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="us-backlog">
         </div>
-        <div role="tabpanel" class="tab-pane" id="us-create">
+    </div>
+
+</div>
+
+<!-- CONTENU DU MENU US -->
+<div class="menu-content gauche" data-menu="usersstories">
+
+    <ul class="nav nav-tabs" role="tablist">
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="us-create">
             <div class="form-group">
                 <label for="us-name">Nom de l'US</label>
                 <input type="text" class="form-control" id="us-name">
@@ -125,11 +136,11 @@
         <div role="tabpanel" class="tab-pane active" id="indic-te">
             <div class="form-group">
                 <label for="sprint-name">Effort Technique</label>
-                <span class="indic-item total"><span class="indic-item"></span></span>
+                <span class="indic-item total"><span class="indic-item done">37</span>68</span>
             </div>
             <div class="form-group">
                 <label for="sprint-name">Valeur Métier</label>
-                <span class="indic-item total"><span class="indic-item"></span></span>
+                <span class="indic-item total"><span class="indic-item done">87</span>135</span>
             </div>
         </div>
     </div>
@@ -163,7 +174,7 @@
 
 </div>
 
-<!-- CONTENU DU MENU SPRINTS -->
+<!-- CONTENU DU MENU TACHES -->
 <div class="menu-content gauche" data-menu="taches">
 
     <ul class="nav nav-tabs" role="tablist">
@@ -191,6 +202,11 @@
 </div>
 
 <!-- ZONES SCRUMBOARD -->
+
+<div class="scrumzone scrumzone-planning">
+    <h2>Planning</h2>
+</div>
+
 <div class="scrumzone scrumzone-us">
     <h2>US</h2>
 </div>
@@ -239,6 +255,7 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/app.js"></script>
 
