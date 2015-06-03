@@ -19,7 +19,7 @@ function afficherScrumzone() {
 }
 
 function afficherActions() {
-    $('.menu-gauche').fadeIn('slow');
+    $('.menu-gauche, .menu-centre').fadeIn('slow');
 }
 
 
